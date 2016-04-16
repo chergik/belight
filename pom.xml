@@ -16,49 +16,130 @@
             <artifactId>aws-lambda-java-core</artifactId>
             <version>1.1.0</version>
         </dependency>
+        <dependency>
+            <groupId>com.amazon.alexa</groupId>
+            <artifactId>alexa-skills-kit</artifactId>
+            <version>1.1.2</version>
+            <scope>compile</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.eclipse.jetty</groupId>
+            <artifactId>jetty-server</artifactId>
+            <version>9.0.6.v20130930</version>
+            <scope>compile</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.eclipse.jetty</groupId>
+            <artifactId>jetty-servlet</artifactId>
+            <version>9.0.6.v20130930</version>
+            <scope>compile</scope>
+        </dependency>
+        <dependency>
+            <groupId>log4j</groupId>
+            <artifactId>log4j</artifactId>
+            <version>1.2.17</version>
+            <scope>compile</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.slf4j</groupId>
+            <artifactId>slf4j-api</artifactId>
+            <version>1.7.10</version>
+            <scope>compile</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.apache.commons</groupId>
+            <artifactId>commons-lang3</artifactId>
+            <version>3.3.2</version>
+            <scope>compile</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.apache.directory.studio</groupId>
+            <artifactId>org.apache.commons.io</artifactId>
+            <version>2.4</version>
+            <scope>compile</scope>
+        </dependency>
     </dependencies>
 
-    <build>
-        <plugins>
-            <plugin>
-                <groupId>org.apache.maven.plugins</groupId>
-                <artifactId>maven-shade-plugin</artifactId>
-                <version>2.3</version>
-                <configuration>
-                    <createDependencyReducedPom>false</createDependencyReducedPom>
-                </configuration>
-                <executions>
-                    <execution>
-                        <phase>package</phase>
-                        <goals>
-                            <goal>shade</goal>
-                        </goals>
-                    </execution>
-                </executions>
-            </plugin>
+    <properties>
+        <property name="disableRequestSignatureCheck" value="false"/>
+        <property name="supportedApplicationIds" value=""/>
+        <property name="timestampTolerance" value="150"/>
+    </properties>
 
-            <plugin>
-                <!--  Note: Normally, this plugin would be run using
-                "mvn compile assembly:single" but the execution
-                clause below binds it to the normal 'package' lifecycle phase
-                -->
-                <artifactId>maven-assembly-plugin</artifactId>
-                <configuration>
-                    <descriptors>
-                        <descriptor>src/assembly/lambda_deployment_package_assembly.xml</descriptor>
-                    </descriptors>
-                </configuration>
-                <executions>
-                    <execution>
-                        <id>lambda_deployment_package_execution</id>
-                        <phase>package</phase>
-                        <goals>
-                            <goal>single</goal>
-                        </goals>
-                    </execution>
-                </executions>
-            </plugin>
-        </plugins>
+    <build>
+        <pluginManagement>
+            <plugins>
+                <plugin>
+                    <groupId>org.apache.maven.plugins</groupId>
+                    <artifactId>maven-shade-plugin</artifactId>
+                    <version>2.3</version>
+                    <configuration>
+                        <createDependencyReducedPom>false</createDependencyReducedPom>
+                    </configuration>
+                    <executions>
+                        <execution>
+                            <phase>package</phase>
+                            <goals>
+                                <goal>shade</goal>
+                            </goals>
+                        </execution>
+                    </executions>
+                </plugin>
+
+                <plugin>
+                    <!--  Note: Normally, this plugin would be run using
+                    "mvn compile assembly:single" but the execution
+                    clause below binds it to the normal 'package' lifecycle phase
+                    -->
+                    <artifactId>maven-assembly-plugin</artifactId>
+                    <configuration>
+                        <descriptors>
+                            <descriptor>src/assembly/lambda_deployment_package_assembly.xml</descriptor>
+                        </descriptors>
+                    </configuration>
+                    <executions>
+                        <execution>
+                            <id>lambda_deployment_package_execution</id>
+                            <phase>package</phase>
+                            <goals>
+                                <goal>single</goal>
+                            </goals>
+                        </execution>
+                    </executions>
+                </plugin>
+
+                <plugin>
+                    <groupId>org.codehaus.mojo</groupId>
+                    <artifactId>exec-maven-plugin</artifactId>
+                    <version>1.2.1</version>
+                    <configuration>
+                        <mainClass>Launcher</mainClass>
+                        <systemProperties>
+                            <systemProperty>
+                                <key>javax.net.ssl.keyStore</key>
+                                <value>/insert/your/path/java-keystore.jks</value>
+                            </systemProperty>
+                            <systemProperty>
+                                <key>javax.net.ssl.keyStorePassword</key>
+                                <value>insert_your_password</value>
+                            </systemProperty>
+                            <systemProperty>
+                                <key>com.amazon.speech.speechlet.servlet.disableRequestSignatureCheck</key>
+                                <value>${disableRequestSignatureCheck}</value>
+                            </systemProperty>
+                            <systemProperty>
+                                <key>com.amazon.speech.speechlet.servlet.supportedApplicationIds</key>
+                                <value>${supportedApplicationIds}</value>
+                            </systemProperty>
+                            <systemProperty>
+                                <key>com.amazon.speech.speechlet.servlet.timestampTolerance</key>
+                                <value>${timestampTolerance}</value>
+                            </systemProperty>
+                        </systemProperties>
+                    </configuration>
+                </plugin>
+            </plugins>
+        </pluginManagement>
     </build>
 
 </project>
