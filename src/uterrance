@@ -1,0 +1,22 @@
+HelloWorldIntent say hello
+HelloWorldIntent say hello world
+HelloWorldIntent hello
+HelloWorldIntent say hi
+HelloWorldIntent say hi world
+HelloWorldIntent hi
+HelloWorldIntent how are you
+InitialPrompt What is for lunch
+InitialPrompt What is for dinner
+InitialPrompt What is for breakfast
+WhatIEat I eat {Food}
+WhatIEat I ate {Food}
+WhatIEat I drink {Food}
+WhatIEat I drank {Food}
+WhatElseCanIEat What else can I eat
+WhatElseCanIEat Any suggestions on the food
+WhatElseCanIEat Can I eat more
+YesPutOrder Yes order {Food} now
+YesPutOrder order {Food} now
+YesPutOrder order {Food} now
+YesPutOrder please order {Food} now
+YesPutOrder order {Food} now

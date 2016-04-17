@@ -62,6 +62,8 @@ public class BeLightSpeachlet implements Speechlet  {
             return getWhatElseCanIEat(session);
         } else if ("InitialPrompt".equals(intentName)) {
             return getInitialPrompt(session);
+        } else if ("YesPutOrder".equals(intentName)) {
+            return setYestPutOrder(intent, session);
         } else {
             throw new SpeechletException("Invalid Intent");
         }
@@ -122,6 +124,27 @@ public class BeLightSpeachlet implements Speechlet  {
             // Render an error since we don't know what the users favorite color is.
             speechText = "I'm not sure what food did you eat, please try again";
             repromptText = "You can tell me I ate pizza";
+        }
+
+        return getSpeechletResponse(speechText, repromptText, true);
+    }
+
+    private SpeechletResponse setYestPutOrder(final Intent intent, final Session session) {
+        // Get the slots from the intent.
+        Map<String, Slot> slots = intent.getSlots();
+
+        Slot foodSlot = slots.get("Food");
+        String speechText, repromptText;
+
+        if (foodSlot != null) {
+            String food = foodSlot.getValue();
+            FoodItem foodItem = FoodDAO.findByName(food);
+            speechText = ResponseGenerator.getResponse(session, foodItem);
+            repromptText ="Good choice. Order is placed.";
+        } else {
+            // Render an error since we don't know what the users favorite color is.
+            speechText = "I'm not sure what did you order, please try again";
+            repromptText = "You can tell me order apple now.";
         }
 
         return getSpeechletResponse(speechText, repromptText, true);
