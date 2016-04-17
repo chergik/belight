@@ -12,7 +12,7 @@ public class ResponseGenerator {
         return "I don't know. What did you have so far?";
     }
 
-    public static String getResponse(Session session, FoodItem foodItem) {
+    public static String getWhatIEatResponse(Session session, FoodItem foodItem) {
         final int residualInCalories = SessionHelper.getResidualInCalories(session, foodItem);
 
         if (residualInCalories <= 0) {

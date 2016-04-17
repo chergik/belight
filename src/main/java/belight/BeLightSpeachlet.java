@@ -117,7 +117,7 @@ public class BeLightSpeachlet implements Speechlet  {
         if (foodSlot != null) {
             String food = foodSlot.getValue();
             FoodItem foodItem = FoodDAO.findByName(food);
-            speechText = ResponseGenerator.getResponse(session, foodItem);
+            speechText = ResponseGenerator.getWhatIEatResponse(session, foodItem);
             repromptText ="You can tell me what you eat.";
             SessionHelper.addCurrentInTake(session, foodItem);
         } else {
@@ -139,8 +139,8 @@ public class BeLightSpeachlet implements Speechlet  {
         if (foodSlot != null) {
             String food = foodSlot.getValue();
             FoodItem foodItem = FoodDAO.findByName(food);
-            speechText = ResponseGenerator.getResponse(session, foodItem);
-            repromptText ="Good choice. Order is placed.";
+            speechText = "Good choice. Order is placed.";
+            repromptText ="I'm not sure what did you order, please try again.";
         } else {
             // Render an error since we don't know what the users favorite color is.
             speechText = "I'm not sure what did you order, please try again";
