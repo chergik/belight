@@ -8,6 +8,10 @@ import com.amazon.speech.speechlet.Session;
  * @author Neo Li. <neo.siqi.li@hotmail.com>
  */
 public class ResponseGenerator {
+    public static String getInitialPrompt(Session session) {
+        return "I don't know. What did you have so far?";
+    }
+
     public static String getResponse(Session session, FoodItem foodItem) {
         final int residualInCalories = SessionHelper.getResidualInCalories(session, foodItem);
 
