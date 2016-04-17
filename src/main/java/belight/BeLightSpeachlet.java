@@ -229,7 +229,7 @@ public class BeLightSpeachlet implements Speechlet  {
         Reprompt reprompt = new Reprompt();
         reprompt.setOutputSpeech(repromptSpeech);
 
-        return SpeechletReponseHack.newAskResponse(speech, repromptSpeech,card);
+        return SpeechletReponseHack.newAskResponse(speech, reprompt);
     }
 
     /**
