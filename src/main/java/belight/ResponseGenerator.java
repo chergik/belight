@@ -17,15 +17,15 @@ public class ResponseGenerator {
 
         if (residualInCalories <= 0) {
             return String.format("You ate %s.  %d calories over your goal. Stop it. American " +
-                                         "say yes.", foodItem.getName(), foodItem
+                    "say yes.", foodItem.getName(), foodItem
                     .getCalories());
-        } else if(foodItem.isBadFood()) {
-            return String.format("%s is bad. It is %d calories. Be careful. Be light");
+        } else if (foodItem.isBadFood()) {
+            return String.format("%s is bad. It is %d calories. Be careful. Be light", foodItem.getName(), foodItem.getCalories());
 
         } else {
             return String.format("%s is %d calories. You are doing great." +
-                                         "Be light", foodItem.getName(),
-                                 foodItem.getCalories());
+                            "Be light", foodItem.getName(),
+                    foodItem.getCalories());
         }
     }
 
@@ -40,8 +40,8 @@ public class ResponseGenerator {
         // increase already eat too much, or can't find a suitable items.
         String recommendation = "Sorry, I don't know. I'll find out.";
 
-        for(FoodItem item : FoodDAO.foodItems.values()) {
-            if(!eatenAlready.contains(item.getName()) && residualInCalories + item.getCalories() <
+        for (FoodItem item : FoodDAO.foodItems.values()) {
+            if (!eatenAlready.contains(item.getName()) && residualInCalories + item.getCalories() <
                     SessionHelper.caloriesMax) {
                 recommendation = "I recommend  " + item.getName() + ", which is " + item
                         .getCalories() + " calories. And you can buy it from " + item.getBuyAt()
