@@ -102,7 +102,8 @@ public class BeLightSpeachlet implements Speechlet  {
             Reprompt reprompt = new Reprompt();
             reprompt.setOutputSpeech(repromptSpeech);
 
-            return SpeechletResponse.newAskResponse(speech, reprompt, card);
+            return SpeechletReponseHack.newAskResponse(speech, reprompt, card);
+
 
         } else {
             return SpeechletResponse.newTellResponse(speech, card);

@@ -1,5 +1,6 @@
 package belight;
 
+import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.List;
 import com.amazon.speech.speechlet.Session;
@@ -18,8 +19,8 @@ public class SessionHelper {
         return (Integer) session.getAttribute(CURRENT_INTAKE_CALORIES);
     }
 
-    public static List<String> getCurrentIntakeFoodNames(Session session) {
-        return (List<String>) session.getAttribute(CURRENT_INTAKE_FOOD_NAMES);
+    public static String getCurrentIntakeFoodNames(Session session) {
+        return (String) session.getAttribute(CURRENT_INTAKE_FOOD_NAMES);
     }
 
     public static void addCurrentInTake(Session session, FoodItem foodItem) {
@@ -29,11 +30,12 @@ public class SessionHelper {
         }
         session.setAttribute(CURRENT_INTAKE_CALORIES, calTaken + foodItem.getCalories());
 
-        List<String> foodTakens = getCurrentIntakeFoodNames(session);
+        String foodTakens = getCurrentIntakeFoodNames(session);
         if(foodTakens ==  null) {
-            foodTakens =  new LinkedList<>();
+            foodTakens = "";
         }
-        session.setAttribute(CURRENT_INTAKE_FOOD_NAMES, foodItem.getName());
+        foodTakens = foodItem.getName() + " ";
+        session.setAttribute(CURRENT_INTAKE_FOOD_NAMES, foodTakens);
     }
 
     public static int getResidualInCalories(Session session, FoodItem foodItem) {
