@@ -85,7 +85,7 @@ public class BeLightSpeachlet implements Speechlet  {
         Reprompt reprompt = new Reprompt();
         reprompt.setOutputSpeech(speech);
 
-        return SpeechletResponse.newAskResponse(speech, reprompt, card);
+        return SpeechletReponseHack.newAskResponse(speech, reprompt, card);
     }
 
     private SpeechletResponse getWhatElseCanIEat(final Session session) {
@@ -104,7 +104,7 @@ public class BeLightSpeachlet implements Speechlet  {
         Reprompt reprompt = new Reprompt();
         reprompt.setOutputSpeech(speech);
 
-        return SpeechletResponse.newAskResponse(speech, reprompt, card);
+        return SpeechletReponseHack.newAskResponse(speech, reprompt, card);
     }
 
     private SpeechletResponse setWhatIEatResponse(final Intent intent, final Session session) {
@@ -204,7 +204,7 @@ public class BeLightSpeachlet implements Speechlet  {
         Reprompt reprompt = new Reprompt();
         reprompt.setOutputSpeech(speech);
 
-        return SpeechletResponse.newAskResponse(speech, reprompt, card);
+        return SpeechletReponseHack.newAskResponse(speech, reprompt, card);
     }
 
     /**
@@ -248,6 +248,6 @@ public class BeLightSpeachlet implements Speechlet  {
         Reprompt reprompt = new Reprompt();
         reprompt.setOutputSpeech(speech);
 
-        return SpeechletResponse.newAskResponse(speech, reprompt, card);
+        return SpeechletReponseHack.newAskResponse(speech, reprompt, card);
     }
 }
