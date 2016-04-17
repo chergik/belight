@@ -16,7 +16,13 @@ public class SessionHelper {
     public static final String CURRENT_INTAKE_FOOD_NAMES = "CURRENT_INTAKE_FOOD_NAMES";
 
     public static Integer getCurrentIntakeCalories(Session session) {
-        return (Integer) session.getAttribute(CURRENT_INTAKE_CALORIES);
+        Integer currentIntake = (Integer) session.getAttribute(CURRENT_INTAKE_CALORIES);
+
+        if (currentIntake == null) {
+            return 0;
+        }
+
+        return currentIntake;
     }
 
     public static String getCurrentIntakeFoodNames(Session session) {

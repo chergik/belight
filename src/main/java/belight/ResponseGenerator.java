@@ -31,8 +31,8 @@ public class ResponseGenerator {
 
     public static String getWhatElseCanIEat(Session session) {
         String eatenAlready = SessionHelper.getCurrentIntakeFoodNames(session);
-        int residualInCalories = SessionHelper.caloriesMax - SessionHelper.getCurrentIntakeCalories
-                (session);
+        Integer residualInCalories = SessionHelper.caloriesMax - SessionHelper
+                .getCurrentIntakeCalories(session);
 
         String response = "You had eaten " + eatenAlready + ". Total intake calories are " +
                 residualInCalories;
