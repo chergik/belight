@@ -17,9 +17,9 @@ public class ResponseGenerator {
 
         if (residualInCalories <= 0) {
             return String.format("You ate %s.  %d calories over your goal. Stop it. American " +
-                                         "say yes.",  foodItem.getName(), foodItem
+                                         "say yes.", foodItem.getName(), foodItem
                     .getCalories());
-        else if(foodItem.isBadFood()) {
+        } else if(foodItem.isBadFood()) {
             return String.format("%s is bad. It is %d calories. Be careful. Be light");
 
         } else {
