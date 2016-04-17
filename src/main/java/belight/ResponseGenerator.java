@@ -16,7 +16,8 @@ public class ResponseGenerator {
         final int residualInCalories = SessionHelper.getResidualInCalories(session, foodItem);
 
         if (residualInCalories <= 0) {
-            return String.format("You ate %s.  %d calories over your goal. Stop it.", foodItem.getName(), foodItem
+            return String.format("You ate %s.  %d calories over your goal. Be careful.", foodItem
+                    .getName(), foodItem
                     .getCalories());
         } else if (foodItem.isBadFood()) {
             return String.format("%s is bad. It is %d calories. Be careful.", foodItem.getName(),

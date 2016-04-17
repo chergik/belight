@@ -213,7 +213,7 @@ public class BeLightSpeachlet implements Speechlet  {
      * @return SpeechletResponse spoken and visual response for the given intent
      */
     private SpeechletResponse getHelloResponse() {
-        String speechText = "Can you say it again?";
+        String speechText = "";
 
         // Create the Simple card content.
         SimpleCard card = new SimpleCard();
