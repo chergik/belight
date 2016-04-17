@@ -1,5 +1,6 @@
 package belight;
 
+import com.amazon.speech.slu.Slot;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -15,6 +16,8 @@ import com.amazon.speech.speechlet.SpeechletResponse;
 import com.amazon.speech.ui.PlainTextOutputSpeech;
 import com.amazon.speech.ui.Reprompt;
 import com.amazon.speech.ui.SimpleCard;
+
+import java.util.Map;
 
 /**
  * Created 4/16/16. Description...
@@ -41,9 +44,8 @@ public class BeLightSpeachlet implements Speechlet  {
     }
 
     public SpeechletResponse onIntent(final IntentRequest request, final Session session)
-    throws SpeechletException
-    {
-        log.info("onIntent requestId={}, sessionId={}", request.getRequestId(),
+    throws SpeechletException {
+        log.warn("onIntent requestId={}, sessionId={}", request.getRequestId(),
                  session.getSessionId());
 
         Intent intent = request.getIntent();
@@ -53,8 +55,57 @@ public class BeLightSpeachlet implements Speechlet  {
             return getHelloResponse();
         } else if ("AMAZON.HelpIntent".equals(intentName)) {
             return getHelpResponse();
+        } else if ("WhatIEat".equals(intentName)) {
+            return setWhatIEatResponse(intent, session);
         } else {
             throw new SpeechletException("Invalid Intent");
+        }
+    }
+
+    private SpeechletResponse setWhatIEatResponse(final Intent intent, final Session session) {
+        // Get the slots from the intent.
+        Map<String, Slot> slots = intent.getSlots();
+
+        Slot foodSlot = slots.get("Food");
+        String speechText, repromptText;
+
+        if (foodSlot != null) {
+            String food = foodSlot.getValue();
+            FoodItem foodItem = FoodDao.findByName(food);
+            speechText = ResponseGenerator.getResponse(session, foodItem);
+            repromptText ="You can tell me what you eat.";
+            SessionHelper.addCurrentInTake(session, foodItem);
+        } else {
+            // Render an error since we don't know what the users favorite color is.
+            speechText = "I'm not sure what food did you eat, please try again";
+            repromptText = "You can tell me I ate pizza";
+        }
+
+        return getSpeechletResponse(speechText, repromptText, true);
+    }
+
+    private SpeechletResponse getSpeechletResponse(String speechText, String repromptText,
+                                                   boolean isAskResponse) {
+        // Create the Simple card content.
+        SimpleCard card = new SimpleCard();
+        card.setTitle("Session");
+        card.setContent(speechText);
+
+        // Create the plain text output.
+        PlainTextOutputSpeech speech = new PlainTextOutputSpeech();
+        speech.setText(speechText);
+
+        if (isAskResponse) {
+            // Create reprompt
+            PlainTextOutputSpeech repromptSpeech = new PlainTextOutputSpeech();
+            repromptSpeech.setText(repromptText);
+            Reprompt reprompt = new Reprompt();
+            reprompt.setOutputSpeech(repromptSpeech);
+
+            return SpeechletResponse.newAskResponse(speech, reprompt, card);
+
+        } else {
+            return SpeechletResponse.newTellResponse(speech, card);
         }
     }
 
