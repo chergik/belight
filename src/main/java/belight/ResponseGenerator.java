@@ -19,10 +19,13 @@ public class ResponseGenerator {
             return String.format("You ate %s.  %d calories over your goal. Stop it. American " +
                                          "say yes.",  foodItem.getName(), foodItem
                     .getCalories());
+        else if(foodItem.isBadFood()) {
+            return String.format("%s is bad. It is %d calories. Be careful. Be light");
+
         } else {
-            return String.format("You eat %s. And it is %d calories. You have %d calories to go. " +
-                                         "Keep it up.", foodItem.getName(),
-                                 foodItem.getCalories(), residualInCalories);
+            return String.format("%s is %d calories. You are doing great." +
+                                         "Be light", foodItem.getName(),
+                                 foodItem.getCalories());
         }
     }
 
