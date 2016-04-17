@@ -23,6 +23,7 @@ import java.util.Map;
  * Created 4/16/16. Description...
  *
  * @author Andrey Chergik <achergik@gmail.com>
+ *         Neo Li. <neo.siqi.li@hotmail.com>
  */
 public class BeLightSpeachlet implements Speechlet  {
     private static final Logger log = LoggerFactory.getLogger(BeLightSpeachlet.class);

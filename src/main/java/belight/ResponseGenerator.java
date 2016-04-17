@@ -5,7 +5,7 @@ import com.amazon.speech.speechlet.Session;
 /**
  * Created 4/16/16. Description...
  *
- * @author Andrey Chergik <achergik@gmail.com>
+ * @author Neo Li. <neo.siqi.li@hotmail.com>
  */
 public class ResponseGenerator {
     public static String getResponse(Session session, FoodItem foodItem) {

@@ -6,7 +6,7 @@ import java.util.HashMap;
 /**
  * Created 4/16/16. Description...
  *
- * @author Andrey Chergik <achergik@gmail.com>
+ * @author Neo Li. <neo.siqi.li@hotmail.com>
  */
 public class FoodDao {
 
