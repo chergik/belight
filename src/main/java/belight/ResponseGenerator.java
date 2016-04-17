@@ -20,7 +20,7 @@ public class ResponseGenerator {
                     "say yes.", foodItem.getName(), foodItem
                     .getCalories());
         } else if (foodItem.isBadFood()) {
-            return String.format("%s is bad. It is %d calories. Be careful. Be light", foodItem.getName(), foodItem.getCalories());
+            return String.format("%s is bad. It is %d calories. Be careful Be light", foodItem.getName(), foodItem.getCalories());
 
         } else {
             return String.format("%s is %d calories. You are doing great." +

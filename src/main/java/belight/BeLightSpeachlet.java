@@ -224,7 +224,12 @@ public class BeLightSpeachlet implements Speechlet  {
         PlainTextOutputSpeech speech = new PlainTextOutputSpeech();
         speech.setText(speechText);
 
-        return SpeechletResponse.newTellResponse(speech, card);
+        PlainTextOutputSpeech repromptSpeech = new PlainTextOutputSpeech();
+        repromptSpeech.setText("What can I do for you.");
+        Reprompt reprompt = new Reprompt();
+        reprompt.setOutputSpeech(repromptSpeech);
+
+        return SpeechletReponseHack.newAskResponse(speech, repromptSpeech,card);
     }
 
     /**
