@@ -16,7 +16,19 @@
       ]
     },
     {
+      "intent": "YesPutOrder",
+      "slots": [
+        {
+          "name": "Food",
+          "type": "LIST_OF_FOOD"
+        }
+      ]
+    },
+    {
       "intent": "WhatElseCanIEat"
+    },
+    {
+      "intent": "InitialPrompt"
     }
   ]
 }
