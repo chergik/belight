@@ -114,7 +114,7 @@ public class BeLightSpeachlet implements Speechlet  {
 
         if (foodSlot != null) {
             String food = foodSlot.getValue();
-            FoodItem foodItem = FoodDao.findByName(food);
+            FoodItem foodItem = FoodDAO.findByName(food);
             speechText = ResponseGenerator.getResponse(session, foodItem);
             repromptText ="You can tell me what you eat.";
             SessionHelper.addCurrentInTake(session, foodItem);

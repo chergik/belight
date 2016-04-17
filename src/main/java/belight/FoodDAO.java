@@ -8,7 +8,7 @@ import java.util.HashMap;
  *
  * @author Neo Li. <neo.siqi.li@hotmail.com>
  */
-public class FoodDao {
+public class FoodDAO {
 
     // If have time replace with Dynamo DB.
     public final static Map<String, FoodItem> foodItems = new HashMap<>();

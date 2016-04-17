@@ -37,7 +37,7 @@ public class ResponseGenerator {
         // increase already eat too much, or can't find a suitable items.
         String recommendation = "";
 
-        for(FoodItem item : FoodDao.foodItems.values()) {
+        for(FoodItem item : FoodDAO.foodItems.values()) {
             if(!eatenAlready.contains(item.getName()) && residualInCalories + item.getCalories() <
                     SessionHelper.caloriesMax) {
                 recommendation = "I recommend  " + item.getName() + ", which is " + item
