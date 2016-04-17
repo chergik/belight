@@ -21,8 +21,8 @@ import com.amazon.speech.ui.SimpleCard;
  *
  * @author Andrey Chergik <achergik@gmail.com>
  */
-public class BeLightSpeechlet implements Speechlet  {
-    private static final Logger log = LoggerFactory.getLogger(BeLightSpeechlet.class);
+public class BeLightSpeachlet implements Speechlet  {
+    private static final Logger log = LoggerFactory.getLogger(BeLightSpeachlet.class);
 
     public void onSessionStarted(final SessionStartedRequest request, final Session session)
     throws SpeechletException
@@ -95,7 +95,7 @@ public class BeLightSpeechlet implements Speechlet  {
      * @return SpeechletResponse spoken and visual response for the given intent
      */
     private SpeechletResponse getHelloResponse() {
-        String speechText = "Hello world";
+        String speechText = "Hello Andrey, Veronika and Neo";
 
         // Create the Simple card content.
         SimpleCard card = new SimpleCard();
