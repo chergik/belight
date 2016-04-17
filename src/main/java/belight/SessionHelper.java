@@ -40,7 +40,7 @@ public class SessionHelper {
         if(foodTakens ==  null) {
             foodTakens = "";
         }
-        foodTakens = foodItem.getName() + " ";
+        foodTakens = foodItem.getName() + foodTakens;
         session.setAttribute(CURRENT_INTAKE_FOOD_NAMES, foodTakens);
     }
 
