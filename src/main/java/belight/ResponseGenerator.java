@@ -31,18 +31,18 @@ public class ResponseGenerator {
         int residualInCalories = SessionHelper.caloriesMax - SessionHelper.getCurrentIntakeCalories
                 (session);
 
-        String response = "You had eaten " + eatenAlready + ". residual intake calories are " +
+        String response = "You had eaten " + eatenAlready + ". Total intake calories are " +
                 residualInCalories;
 
         // increase already eat too much, or can't find a suitable items.
-        String recommendation = "";
+        String recommendation = "Sorry, I don't know. I'll find out.";
 
         for(FoodItem item : FoodDAO.foodItems.values()) {
             if(!eatenAlready.contains(item.getName()) && residualInCalories + item.getCalories() <
                     SessionHelper.caloriesMax) {
                 recommendation = "I recommend  " + item.getName() + ", which is " + item
                         .getCalories() + " calories. And you can buy it from " + item.getBuyAt()
-                        + ". Say yes to buy with Amazon Prime Now within one hour.";
+                        + ". Do you want me to order?";
             }
         }
 
