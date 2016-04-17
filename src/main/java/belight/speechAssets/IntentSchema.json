@@ -5,6 +5,18 @@
     },
     {
       "intent": "AMAZON.HelpIntent"
+    },
+    {
+      "intent": "WhatIEat",
+      "slots": [
+        {
+          "name": "Food",
+          "type": "LIST_OF_FOOD"
+        }
+      ]
+    },
+    {
+      "intent": "WhatElseCanIEat"
     }
   ]
 }

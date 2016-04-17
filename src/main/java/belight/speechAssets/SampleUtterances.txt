@@ -5,3 +5,10 @@ HelloWorldIntent say hi
 HelloWorldIntent say hi world
 HelloWorldIntent hi
 HelloWorldIntent how are you
+WhatIEat I eat {Food}
+WhatIEat I ate {Food}
+WhatIEat I drink {Food}
+WhatIEat I drank {Food}
+WhatElseCanIEat What else can I eat
+WhatElseCanIEat Any suggestions on the food
+WhatElseCanIEat Can I eat more

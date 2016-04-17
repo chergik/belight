@@ -10,7 +10,7 @@ import com.amazon.speech.speechlet.Session;
  * @author Andrey Chergik <achergik@gmail.com>
  */
 public class SessionHelper {
-    private static Integer caloriesMax = 3000;
+    public static Integer caloriesMax = 3000;
 
     public static final String CURRENT_INTAKE_CALORIES = "CURRENT_INTAKE_CALORIES";
     public static final String CURRENT_INTAKE_FOOD_NAMES = "CURRENT_INTAKE_FOOD_NAMES";

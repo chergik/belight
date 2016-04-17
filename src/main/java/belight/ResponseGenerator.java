@@ -21,4 +21,27 @@ public class ResponseGenerator {
                                  foodItem.getCalories(), residualInCalories);
         }
     }
+
+    public static String getWhatElseCanIEat(Session session) {
+        String eatenAlready = SessionHelper.getCurrentIntakeFoodNames(session);
+        int residualInCalories = SessionHelper.caloriesMax - SessionHelper.getCurrentIntakeCalories
+                (session);
+
+        String response = "You had eaten " + eatenAlready + ". residual intake calories are " +
+                residualInCalories;
+
+        // increase already eat too much, or can't find a suitable items.
+        String recommendation = "";
+
+        for(FoodItem item : FoodDao.foodItems.values()) {
+            if(!eatenAlready.contains(item.getName()) && residualInCalories + item.getCalories() <
+                    SessionHelper.caloriesMax) {
+                recommendation = "I recommend  " + item.getName() + ", which is " + item
+                        .getCalories() + " calories. And you can buy it from " + item.getBuyAt()
+                        + ". Say yes to buy with Amazon Prime Now within one hour.";
+            }
+        }
+
+        return response + recommendation;
+    }
 }

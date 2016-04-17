@@ -57,9 +57,30 @@ public class BeLightSpeachlet implements Speechlet  {
             return getHelpResponse();
         } else if ("WhatIEat".equals(intentName)) {
             return setWhatIEatResponse(intent, session);
+        } else if ("WhatElseCanIEat".equals(intentName)) {
+            return getWhatElseCanIEat(session);
         } else {
             throw new SpeechletException("Invalid Intent");
         }
+    }
+
+    private SpeechletResponse getWhatElseCanIEat(final Session session) {
+        String speechText = ResponseGenerator.getWhatElseCanIEat(session);
+
+        // Create the Simple card content.
+        SimpleCard card = new SimpleCard();
+        card.setTitle("WhatElseCanIEat");
+        card.setContent(speechText);
+
+        // Create the plain text output.
+        PlainTextOutputSpeech speech = new PlainTextOutputSpeech();
+        speech.setText(speechText);
+
+        // Create reprompt
+        Reprompt reprompt = new Reprompt();
+        reprompt.setOutputSpeech(speech);
+
+        return SpeechletResponse.newAskResponse(speech, reprompt, card);
     }
 
     private SpeechletResponse setWhatIEatResponse(final Intent intent, final Session session) {
