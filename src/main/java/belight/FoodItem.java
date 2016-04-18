@@ -4,6 +4,7 @@ package belight;
  * Created 4/16/16. Description...
  *
  * @author Neo Li. <neo.siqi.li@hotmail.com>
+ *     Andrey Chergik <achergik@gmail.com>
  */
 public class FoodItem {
     private String name;

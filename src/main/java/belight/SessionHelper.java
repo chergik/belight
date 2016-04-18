@@ -5,6 +5,7 @@ import com.amazon.speech.speechlet.Session;
  * Created 4/16/16. Description...
  *
  * @author Neo Li. <neo.siqi.li@hotmail.com>
+ *     Andrey Chergik <achergik@gmail.com>
  */
 public class SessionHelper {
     public static Integer caloriesMax = 3000;
@@ -14,12 +15,7 @@ public class SessionHelper {
 
     public static Integer getCurrentIntakeCalories(Session session) {
         Integer currentIntake = (Integer) session.getAttribute(CURRENT_INTAKE_CALORIES);
-
-        if (currentIntake == null) {
-            return 0;
-        }
-
-        return currentIntake;
+        return currentIntake == null ? 0 : currentIntake;
     }
 
     public static String getCurrentIntakeFoodNames(Session session) {
@@ -28,9 +24,7 @@ public class SessionHelper {
 
     public static void addCurrentInTake(Session session, FoodItem foodItem) {
         Integer calTaken = getCurrentIntakeCalories(session);
-        if(calTaken == null) {
-            calTaken = 0;
-        }
+
         session.setAttribute(CURRENT_INTAKE_CALORIES, calTaken + foodItem.getCalories());
 
         String foodTakens = getCurrentIntakeFoodNames(session);
@@ -43,11 +37,6 @@ public class SessionHelper {
 
     public static int getResidualInCalories(Session session, FoodItem foodItem) {
         Integer calTaken = getCurrentIntakeCalories(session);
-
-        if(calTaken == null) {
-            calTaken = 0;
-        }
-
         return caloriesMax - (calTaken + foodItem.getCalories());
     }
 
